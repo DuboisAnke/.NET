@@ -1,0 +1,183 @@
+﻿<Window x:Class="BSS_Versie3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BSS_Versie3"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="img/WO7o5M.jpg"/>
+        </Grid.Background>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="150"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Viewbox>
+            <Label x:Name="lblTimer" FontFamily="Trajan Pro" Background="LightGray" Margin="2"></Label>
+        </Viewbox>
+
+        <Viewbox Grid.Row="1" Grid.RowSpan="3" Margin="5">
+            <StackPanel Orientation="Vertical">
+                <Button Background="{x:Null}" x:Name="btnKnight" Click="btnKnight_Click">
+                    <Button.Content>
+                        <Image x:Name="btnImageRidder" Source="/img/knight.png" MouseEnter="btnImageRidder_MouseEnter" MouseLeave="btnImageRidder_MouseLeave"/>
+                    </Button.Content>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Background="{x:Null}" x:Name="btnArcher" Click="btnArcher_Click">
+                    <Button.Content>
+                        <Image x:Name="btnImageBoogschutter" Source="/img/archer.png" MouseEnter="btnImageBoogschutter_MouseEnter" MouseLeave="btnImageBoogschutter_MouseLeave"/>
+                    </Button.Content>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </Viewbox>
+
+        <Viewbox  Grid.Column="1" Grid.Row="1">
+            <StackPanel Orientation="Horizontal" Margin="5" Background="LightGray">
+                <Label FontFamily="Trajan Pro" FontSize="11" Width="75" Content="Speler:" VerticalAlignment="Bottom"/>
+                <TextBlock x:Name="txtSpelerAantal" Width="25" VerticalAlignment="Center" Margin="0 5 0 5"><Run Text="0"/></TextBlock>
+            </StackPanel>
+        </Viewbox>
+
+        <Viewbox Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Margin="5">
+            <StackPanel x:Name="stackSpeler" Background="LightGray" >
+                <Image x:Name="uitkomstSpeler" Height="150" Width="150"/>
+            </StackPanel>
+        </Viewbox>
+
+        <Viewbox  Grid.Column="2" Grid.Row="1">
+            <StackPanel Orientation="Horizontal" Margin="5" Background="LightGray">
+                <Label FontFamily="Trajan Pro" FontSize="11" Width="75" Content="Computer:" VerticalAlignment="Bottom"/>
+                <TextBlock x:Name="txtCompAantal" Width="25" VerticalAlignment="Center" Margin="0 5 0 5"><Run Text="0"/></TextBlock>
+            </StackPanel>
+        </Viewbox>
+
+        <Viewbox Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Margin="5">
+            <StackPanel x:Name="stackComputer" Background="LightGray" >
+                <Image x:Name="uitkomstComputer" Height="150" Width="150"/>
+            </StackPanel>
+        </Viewbox>
+
+        <Viewbox Grid.Column="3" Grid.Row="1" Grid.RowSpan="3">
+            <StackPanel Orientation="Vertical">
+                <Button Background="{x:Null}" x:Name="btnSwordsman" Click="btnSwordsman_Click">
+                    <Button.Content>
+                        <Image x:Name="btnImageZwaardvechter" Source="/img/swordsman.png" MouseEnter="btnImageZwaardvechter_MouseEnter" MouseLeave="btnImageZwaardvechter_MouseLeave" />
+                    </Button.Content>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Background="{x:Null}" x:Name="btnSpearman" Click="btnSpearman_Click">
+                    <Button.Content>
+                        <Image x:Name="btnImageSpeervechter" Source="/img/spearman.png" MouseEnter="btnImageSpeervechter_MouseEnter" MouseLeave="btnImageSpeervechter_MouseLeave"/>
+                    </Button.Content>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </Viewbox>
+
+        <Viewbox Grid.Column="1" Grid.ColumnSpan="2">
+            <Label x:Name="lblMessage" Width="300" Height="50" FontFamily="Trajan Pro" Margin="0 25 0 0">
+                <Label.Background>
+                    <ImageBrush ImageSource="img/parchment.jpg"/>
+                </Label.Background>
+            </Label>
+        </Viewbox>
+
+        <Viewbox Grid.Row="4" Grid.Column="1">
+            <StackPanel x:Name="stackAantalSpeler" Orientation="Vertical" Margin="5" Height="150" Width="150">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="img/parchment.jpg"/>
+                </StackPanel.Background>
+                <Label x:Name="aantalRidderSpeler" FontFamily="Trajan Pro" Margin="5" Height="25">Ridder: </Label>
+                <Label x:Name="aantalBoogschutterSpeler" FontFamily="Trajan Pro" Margin="5" Height="25">Boogschutter: </Label>
+                <Label x:Name="aantalZwaardvechterSpeler" FontFamily="Trajan Pro" Margin="5" Height="25">Zwaardvechter: </Label>
+                <Label x:Name="aantalSpeerwerperspeler" FontFamily="Trajan Pro" Margin="5" Height="25">Speerwerper: </Label>
+            </StackPanel>
+        </Viewbox>
+
+        <Viewbox Grid.Row="4" Grid.Column="2">
+            <StackPanel x:Name="stackAantalComputer" Orientation="Vertical" Margin="5" Height="150" Width="150">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="img/parchment.jpg"/>
+                </StackPanel.Background>
+                <Label x:Name="aantalRidderComp" FontFamily="Trajan Pro" Margin="5" Height="25">Ridder: </Label>
+                <Label x:Name="aantalBoogschutterComp" FontFamily="Trajan Pro" Margin="5" Height="25">Boogschutter: </Label>
+                <Label x:Name="aantalZwaardvechterComp" FontFamily="Trajan Pro" Margin="5" Height="25">Zwaardvechter: </Label>
+                <Label x:Name="aantalSpeerwerperComp" FontFamily="Trajan Pro" Margin="5" Height="25">Speerwerper: </Label>
+            </StackPanel>
+        </Viewbox>
+
+        <Viewbox Grid.Row="1" Grid.RowSpan="3" Grid.Column="4">
+            <StackPanel Orientation="Vertical" Height="150" Margin="5">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="img/parchment.jpg"/>
+                </StackPanel.Background>
+                <Label FontFamily="Trajan Pro" Margin="5">Scorebord:</Label>
+                <Label x:Name="lblScorebord" Height="100" Margin="5"></Label>
+            </StackPanel>
+        </Viewbox>
+    </Grid>
+</Window>

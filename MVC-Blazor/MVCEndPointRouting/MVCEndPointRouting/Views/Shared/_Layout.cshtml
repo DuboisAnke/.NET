@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Endpoint routing</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+<div class="bg-dark text-white p-2">
+    <span class="navbar-brand ml-2">MVCEndpointRouting</span>
+</div>
+<div class="row m-1 p-1">
+    <div id="menu" class="col-3">
+        <ul>
+            <li>
+                <a asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li>
+                <a asp-controller="Home" asp-action="RoutingList">Routing list</a>
+            </li>
+            <li>
+                <a asp-controller="Routing" asp-action="RoutingInt">Routing int (no parameter)</a>
+            </li>
+            <li>
+                <a asp-controller="Routing" asp-action="RoutingInt" asp-route-id="10">Routing int (10)</a>
+            </li>
+            <li>
+                <a asp-controller="Routing" asp-action="RoutingName" asp-route-id="10" asp-route-name="Anke">Routing with name</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-9">
+        @RenderBody()
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+﻿@using PXLFunds.Services
+@using Microsoft.Extensions.DependencyInjection
+@using System.Reflection.Metadata
+@using PXLFunds.Data
+@inherits OwningComponentBase
+
+@page "/manage/"
+@page "/manage/userfunds"
+
+
+
+<br/>
+<h1>Overview</h1>
+<br/>
+
+<table class="table table-sm table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>UserId</th
+        ><th>FundId</th>
+        <th>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (UserFund u in UserFunds)
+    {
+        <tr>
+            <td>@u.UserId</td>
+            <td>@u.Fund.FundName</td>
+            <td>@u.Fund.FundValue</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<div class="form-group">
+    <a href="/manage/userfunds/create" class="text-center p-2 w-50 m-auto btn btn-primary">ADD USERFUND</a>
+</div>
+
+
+@code {
+
+    public IFundRepository FundRepository => ScopedServices.GetService<IFundRepository>();
+
+
+    public IEnumerable<UserFund> UserFunds => FundRepository.GetAllUserFunds();
+
+}

@@ -1,0 +1,52 @@
+﻿@using Microsoft.Extensions.DependencyInjection
+@inherits OwningComponentBase
+
+@page "/manage/userfunds/create"
+@using PXLFunds.Data
+@using PXLFunds.Controllers
+@using PXLFunds.Services
+
+<h3>Create a userfund</h3>
+
+<EditForm Model="UserFund" OnValidSubmit="HandleValidSubmit">
+    <div class="form-group">
+        <label>UserId</label>
+        <InputText class="form-control" @bind-Value="UserFund.UserId" />
+    </div>
+    <div class="form-group">
+        <label>Surname</label>
+        <InputNumber class="form-control" @bind-Value="UserFund.FundId" />
+    </div>
+    <div class="form-group">
+        <label>Department ID</label>
+        <InputNumber class="form-control" @bind-Value="UserFund.Amount" />
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <NavLink class="btn btn-secondary" href="/manage/people">Back</NavLink>
+    </div>
+</EditForm>
+
+
+@code {
+
+    public IFundRepository FundRepository => ScopedServices.GetService<IFundRepository>();
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    public UserFund UserFund = new UserFund();
+
+    [Parameter]
+    public string UserId { get; set; }
+
+    public int FundId { get; set; }
+
+    public int Amount { get; set;  }
+
+    public void HandleValidSubmit()
+    {
+        FundRepository.AddUserFund(UserFund);
+        NavigationManager.NavigateTo("/manage/userfunds");
+    }
+}

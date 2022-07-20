@@ -1,0 +1,47 @@
+﻿@model IEnumerable<PXLFunds.Data.Fund>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FundName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FundValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bank)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FundName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FundValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bank.BankId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FundId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FundId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FundId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

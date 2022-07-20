@@ -1,0 +1,64 @@
+﻿@page "/"
+@page "/ownedgames"
+@using Microsoft.AspNetCore.Http
+@using System.Collections.ObjectModel
+@using Microsoft.Extensions.DependencyInjection
+@inject IHttpContextAccessor HttpContextAccessor
+@inherits OwningComponentBase
+
+
+<br />
+<h1>Overview Owned Games</h1>
+<br />
+
+<table class="table table-sm table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Platform</th>
+        <th>State</th>
+        <th>Score</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach ( var game in OwnedGames)
+    {
+        <tr>
+            <td>@game.Game.Title</td>
+            <td>@game.Game.Description</td>
+            <td>@game.Game.Platform.Name</td>
+            <td>@game.StateDescription</td>
+            <td>@game.Score</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@code {
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    public GamesRepositoryInterface GameRepository => ScopedServices.GetService<GamesRepositoryInterface>();
+
+    public ObservableCollection<OwnedGame> OwnedGames = new ObservableCollection<OwnedGame>();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await GetOwnedGames();
+    }
+
+    public async Task GetOwnedGames()
+    {
+        var user = HttpContextAccessor.HttpContext.User;
+        var userId = GameRepository.GetIdFromName(user.Identity.Name.ToString());
+        var list = GameRepository.GetOwnedGamesFromOwner(userId);
+        OwnedGames = new ObservableCollection<OwnedGame>(list);
+        await InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
+    }
+
+}

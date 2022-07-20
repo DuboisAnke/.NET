@@ -1,0 +1,40 @@
+﻿@using Microsoft.Extensions.DependencyInjection
+@using System.Collections.ObjectModel
+@inherits OwningComponentBase
+@page "/"
+@page "/topgames"
+
+<br />
+<h1>Overview Popular Games</h1>
+<br />
+
+<table class="table table-sm table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Platform</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach ( var game in TopGames)
+    {
+        <tr>
+            <td>@game.Title</td>
+            <td>@game.Description</td>
+            <td>@game.Platform.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+@code {
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    public GamesRepositoryInterface GameRepository => ScopedServices.GetService<GamesRepositoryInterface>();
+
+    public IEnumerable<Game> TopGames => GameRepository.GetTopOwnedGames();
+
+}
